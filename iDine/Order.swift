@@ -5,7 +5,7 @@ import SwiftUI
 @Observable
 class Order {
     var items = [MenuItem]()
-
+    
     var total: Int {
         if items.count > 0 {
             return items.reduce(0) { $0 + $1.price }

@@ -12,9 +12,9 @@ struct ItemDetail: View {
     let item: MenuItem
     
     var order: Order
-    
+    @State private var added = false
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             
             ZStack(alignment: .bottomTrailing) {
                 Image(item.mainImage)
@@ -31,10 +31,26 @@ struct ItemDetail: View {
             Text(item.description)
                 .padding()
             
-            Button("Order This") {
-                order.add(item: item)
+            HStack {
+                Button(added ? "Added to cart" : "Order This") {
+                    order.add(item: item)
+                    added = true
+                }
+                .foregroundColor(.white)
+                .padding()
+                .background(.black)
+                .clipShape(Capsule())
+                .padding(.leading)
+                
+                Button("",systemImage: "trash.slash") {
+                    added = false
+                    order.remove(item: item)
+                }
+                .opacity(added ? 1 : 0)
+                .padding(.leading)
             }
-            .buttonStyle(.borderedProminent)
+            
+            
             
             Spacer()
         }

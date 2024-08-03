@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct MainView: View {
+    @State private var order = Order()
     var body: some View {
         TabView {
-            ContentView()
+            ContentView(order: order)
                 .tabItem {
                     Label("Menu", systemImage: "list.dash")
                 }
             
-            OrderView()
+            OrderView(order: order)
                 .tabItem {
                     Label("Order", systemImage: "square.and.pencil")
                 }
@@ -25,5 +26,4 @@ struct MainView: View {
 
 #Preview {
     MainView()
-        .environmentObject(Order())
 }

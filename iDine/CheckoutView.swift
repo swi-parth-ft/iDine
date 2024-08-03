@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CheckoutView: View {
-    @EnvironmentObject var order: Order
+    var order: Order
     let paymentTypes = ["Cash", "Credit Card", "iDine Points"]
     @State private var paymentType = "Cash"
     @State private var addLoyaltyDetails = false
@@ -63,6 +63,5 @@ struct CheckoutView: View {
 }
 
 #Preview {
-    CheckoutView()
-        .environmentObject(Order())
+    CheckoutView(order: Order())
 }

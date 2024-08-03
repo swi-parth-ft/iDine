@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
-    
+    var order: Order
     var body: some View {
       NavigationStack {
             List {
                 ForEachMenuSections()
             }
             .navigationDestination(for: MenuItem.self, destination: { item in
-                ItemDetail(item: item)
+                ItemDetail(item: item, order: order)
             })
             .navigationTitle("Menu")
             .listStyle(.grouped)
@@ -41,5 +41,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(order: Order())
 }

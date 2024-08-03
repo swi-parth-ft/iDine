@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OrderView: View {
     
-    @EnvironmentObject var order: Order
+   var order: Order
     
     var body: some View {
         NavigationStack {
@@ -27,7 +27,7 @@ struct OrderView: View {
                 
                 Section {
                     NavigationLink("Place Order") {
-                        CheckoutView()
+                        CheckoutView(order: order)
                     }
                 }
                 .disabled(order.items.isEmpty)
@@ -46,6 +46,5 @@ struct OrderView: View {
 }
 
 #Preview {
-    OrderView()
-        .environmentObject(Order())
+    OrderView(order: Order())
 }
